@@ -1,6 +1,7 @@
 {
   "name": "bubble-client",
   "version": "0.0.1",
+  "description": "Bubble client application",  
   "private": true,
   "scripts": {
     "start": "react-native start"

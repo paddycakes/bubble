@@ -1,0 +1,10 @@
+{
+  "name": "bubble-server",
+  "version": "0.0.1",
+  "description": "Bubble server application",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

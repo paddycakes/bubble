@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 
 class Bubble extends Component {
     render() {
-        return React.createElement(Text, { style: styles.text }, 'Hello World! (Again)');
+        return <Text style={styles.text}>Hello Bubble!</Text>;
     }
 }
 

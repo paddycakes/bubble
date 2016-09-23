@@ -12,7 +12,7 @@ import {
   View
 } from 'react-native';
 
-class bubble extends Component {
+class Bubble extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('bubble', () => bubble);
+AppRegistry.registerComponent('Bubble', () => Bubble);

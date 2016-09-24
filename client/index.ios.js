@@ -4,7 +4,7 @@ import {
     StyleSheet,
     NavigatorIOS,
 } from 'react-native';
-import BubblePage from './components/BubblePage';
+import QuestionPage from './components/pages/QuestionPage';
 
 const styles = StyleSheet.create({
     container: {
@@ -18,7 +18,7 @@ class Bubble extends Component {
             <NavigatorIOS
                 initialRoute={{
                     title: 'Bubble Client',
-                    component: BubblePage,
+                    component: QuestionPage,
                 }}
                 style={styles.container}
             />

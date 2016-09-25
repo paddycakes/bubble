@@ -16,9 +16,9 @@ class Bubble extends Component {
     render() {
         return (
             <NavigatorIOS
-                style={styles.container} 
+                style={styles.container}
                 initialRoute={{
-                    title: 'Bubble Client',
+                    title: 'Ask',
                     component: QuestionPage,
                 }}
             />

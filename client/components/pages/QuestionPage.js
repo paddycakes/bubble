@@ -67,7 +67,7 @@ class QuestionPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            question: {},
+            question: '',
         };
     }
 
@@ -113,7 +113,7 @@ class QuestionPage extends Component {
                 <View style={styles.flowRight}>
                     <TextInput
                         style={styles.questionInput}
-                        value={this.state.question}
+                        value={this.state.question.text}
                         onChange={this.onQuestionTextChanged.bind(this)}
                         placeholder='Ask your question..'/>
                     <TouchableHighlight style={styles.button}

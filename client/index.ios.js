@@ -16,11 +16,11 @@ class Bubble extends Component {
     render() {
         return (
             <NavigatorIOS
+                style={styles.container} 
                 initialRoute={{
                     title: 'Bubble Client',
                     component: QuestionPage,
                 }}
-                style={styles.container}
             />
         );
     }

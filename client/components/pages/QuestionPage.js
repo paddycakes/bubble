@@ -67,8 +67,7 @@ class QuestionPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            question: '',
-            // isLoading: false,
+            question: {},
         };
     }
 
@@ -78,12 +77,11 @@ class QuestionPage extends Component {
 
     _executeSave(question) {
         console.log(question);
-        // this.setState({ isLoading: true });
         // TODO: Post some data asynchronously...
         this._handleResponse({ data: { id: 1,
                                        user: 'Bubbles',
                                        timestamp: null,
-                                       text: 'Whateves' },
+                                       text: question },
                              });
     }
 
@@ -92,24 +90,18 @@ class QuestionPage extends Component {
     }
 
     _handleResponse(response) {
-        // this.setState({ isLoading: false , message: '' });
-        console.log(response);
         if (response.data) {
             this.props.navigator.push({
-                title: 'Answers',
+                title: 'Your Answers',
                 component: AnswerPage,
-                passProps: { question: response.data }
+                passProps: { question: response.data },
             });
         } else {
-            // this.setState({ message: 'Location not recognized; please try again.'});
+            // TODO: Log error / show message
         }
     }
 
     render() {
-        // const spinner = this.state.isLoading ?
-        //   (<ActivityIndicatorIOS
-        //       size='large'/>) :
-        //   (<View/>);
         return (
             <View style={styles.container}>
                 <Text style={styles.description}>
@@ -141,5 +133,9 @@ class QuestionPage extends Component {
         );
     }
 }
+
+QuestionPage.propTypes = {
+    navigator: React.PropTypes.object.isRequired,
+};
 
 export default QuestionPage;

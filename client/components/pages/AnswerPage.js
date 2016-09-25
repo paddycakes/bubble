@@ -8,28 +8,33 @@ import {
     Image,
 } from 'react-native';
 
-class AnswerPage extends Component {
-    // static propTypes = {
-    //     question: PropTypes.object.isRequired,
-    //     navigator: PropTypes.object.isRequired,
-    // }
+const styles = StyleSheet.create({
+    description: {
+        marginTop: 80,
+        marginBottom: 20,
+        fontSize: 18,
+        textAlign: 'center',
+        color: '#656565',
+    },
+});
 
+class AnswerPage extends Component {
     constructor(props) {
         super(props);
     }
 
     render() {
-        // const otherText = 'can we see this?';
+        console.log('In AnswerPage render');
         return (
-            <TouchableHighlight>
-                <Text>Go</Text>
-            </TouchableHighlight>
+            <View>
+                <Text style={styles.description}>{this.props.question.text}</Text>
+            </View>
         );
     }
 }
 
-// AnswerPage.propTypes = {
-//     question: React.PropTypes.object.isRequired,
-// };
+AnswerPage.propTypes = {
+    question: React.PropTypes.object.isRequired,
+};
 
 export default AnswerPage;

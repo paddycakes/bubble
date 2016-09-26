@@ -66,9 +66,10 @@ const styles = StyleSheet.create({
 class QuestionPage extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            question: '',
-        };
+        this.state = { question: '' };
+        // No autobinding in ES6 so binding once in constructor
+        this.onQuestionTextChanged = this.onQuestionTextChanged.bind(this);
+        this.onGoPressed = this.onGoPressed.bind(this);
     }
 
     onQuestionTextChanged(event) {
@@ -85,10 +86,6 @@ class QuestionPage extends Component {
                              });
     }
 
-    onGoPressed() {
-        this._executeSave(this.state.question);
-    }
-
     _handleResponse(response) {
         if (response.data) {
             this.props.navigator.push({
@@ -99,6 +96,10 @@ class QuestionPage extends Component {
         } else {
             // TODO: Log error / show message
         }
+    }
+
+    onGoPressed() {
+        this._executeSave(this.state.question);
     }
 
     render() {
@@ -114,12 +115,12 @@ class QuestionPage extends Component {
                     <TextInput
                         style={styles.questionInput}
                         value={this.state.question.text}
-                        onChange={this.onQuestionTextChanged.bind(this)}
+                        onChange={this.onQuestionTextChanged}
                         placeholder='Ask your question..'/>
                     <TouchableHighlight style={styles.button}
                         underlayColor='#99d9f4'>
                         <Text style={styles.buttonText}
-                            onPress={this.onGoPressed.bind(this)}>Go</Text>
+                            onPress={this.onGoPressed}>Go</Text>
                     </TouchableHighlight>
                 </View>
                 <TouchableHighlight style={styles.button}

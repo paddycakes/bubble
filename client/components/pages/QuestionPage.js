@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
     StyleSheet,
     Text,
@@ -136,7 +136,7 @@ class QuestionPage extends Component {
 }
 
 QuestionPage.propTypes = {
-    navigator: React.PropTypes.object.isRequired,
+    navigator: PropTypes.object.isRequired,
 };
 
 export default QuestionPage;

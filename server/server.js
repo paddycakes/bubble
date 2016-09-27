@@ -21,7 +21,12 @@ app.get('/api/questions/:questionId', (req, res) => {
 });
 
 app.get('/api/questions/:questionId/answers', (req, res) => {
-    res.send('GET request for answers with questionId ' + req.params.questionId);
+    const answers = [{ id: 1, qId: 1, user: 'paddy', answer: 'At the corner of Marble Arch' },
+                     { id: 2, qId: 1, user: 'piotr', answer: 'Up the road at Petticoat Lane' },
+                     { id: 3, qId: 1, user: 'lloyd', answer: 'On Blueberry Parade' },
+                     { id: 4, qId: 1, user: 'dan', answer: 'Down the Lane .. White Hart Lane' },
+                     { id: 5, qId: 1, user: 'chris', answer: 'Just beside Old Trafford' }];
+    res.send(answers);
 });
 
 app.post('/api/questions/:questionId/answers', (req, res) => {

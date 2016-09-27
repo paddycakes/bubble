@@ -5,6 +5,16 @@ const io = require('socket.io')(server);
 
 const port = process.env.PORT || 3000;
 
+// API Routing - break out into separate files with app.use('/api/questions', questions);
+app.route('/api/questions')
+    .get((req, res) => {
+        res.send('GET request from QuestionListPage');
+    })
+    .post((req, res) => {
+        res.send('POST request from QuestionPage');
+    });
+
+// Websockets
 io.on('connection', (socket) => {
     console.log('new connection made');
 

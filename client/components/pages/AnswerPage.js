@@ -37,17 +37,42 @@ const styles = StyleSheet.create({
     },
 });
 
+// TODO: This component should fetch required answers when displayed - if any.
+//       and have a listening websocket for more answers to display as they are pushed.
+//       The rendering should be done via props passed into a Presentation component.
+//       https://www.reddit.com/r/reactnative/comments/33wmu4/how_to_re_render_listview_items/
+//       See other article I read about the difference between smart and dumb components.
 class AnswerPage extends Component {
     constructor(props) {
         super(props);
-        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1.id !== r2.id });
+        const answers = [];
         this.state = {
-            answers: [],
-            dataSource: ds.cloneWithRows([{ id: 1, qId: 1, user: 'paddy', answer: 'At the corner of South and West Streets' },
-                                          { id: 2, qId: 1, user: 'piotr', answer: 'Up the road at Petticoat Lane' },
-                                          { id: 3, qId: 1, user: 'lloyd', answer: 'On Blueberry Parade' }]),
+            answers,
+            ds,
+            dataSource: ds.cloneWithRows(answers),
         };
         this.renderRow = this.renderRow.bind(this);
+    }
+
+    // TODO: Is there a render before componentDidMount?
+    componentDidMount() {
+        this._loadAnswers();
+    }
+
+    _loadAnswers() {
+        fetch('http://localhost:3000/api/questions/1/answers')
+        .then(response => response.json())
+        .then(answers =>
+            this.setState({
+                answers,
+                dataSource: this.state.ds.cloneWithRows(answers),
+            }))
+        .catch(error =>
+            this.setState({
+                message: 'Something bad happened ' + error,
+            })
+        );
     }
 
     renderRow(rowData, sectionID, rowID) {

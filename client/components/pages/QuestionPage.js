@@ -92,7 +92,7 @@ class QuestionPage extends Component {
             }),
         })
         .then(response => response.json())
-        .then(json => this._handleResponse(json))
+        .then(storedQuestion => this._handleResponse(storedQuestion))
         .catch(error =>
             this.setState({
                 // isLoading: false,
@@ -101,13 +101,13 @@ class QuestionPage extends Component {
         );
     }
 
-    _handleResponse(response) {
-        console.log('Response>> ' + response);
-        if (response) {
+    _handleResponse(question) {
+        console.log('Response>> ' + question);
+        if (question) {
             this.props.navigator.push({
                 title: 'Your Answers',
                 component: AnswerPage,
-                passProps: { question: response },
+                passProps: { question },
             });
         } else {
             // TODO: Log error / show message

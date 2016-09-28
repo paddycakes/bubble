@@ -31,9 +31,10 @@ app.get('/api/questions/:questionId', (req, res) => {
 });
 
 app.get('/api/questions/:questionId/answers', (req, res) => {
+    console.log('In get answers with questionId>> ' + req.params.questionId);
     const answers = [{ id: 1, qId: 1, answer: 'At the corner of Marble Arch', timestamp: Date.now(), user: 'paddy' },
                      { id: 2, qId: 1, answer: 'Up the road at Petticoat Lane', timestamp: Date.now(), user: 'piotr' },
-                     { id: 3, qId: 1, answer: 'On Blueberry Parade', timestamp: Date.now(), user: 'lloyd' },
+                     { id: 3, qId: 1, answer: 'On Electric Avenue', timestamp: Date.now(), user: 'lloyd' },
                      { id: 4, qId: 1, answer: 'Down the Lane .. White Hart Lane', timestamp: Date.now(), user: 'dan' },
                      { id: 5, qId: 1, answer: 'Just beside Old Trafford', timestamp: Date.now(), user: 'chris' }];
     res.send(answers);

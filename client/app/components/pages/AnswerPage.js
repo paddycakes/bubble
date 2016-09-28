@@ -56,7 +56,6 @@ class AnswerPage extends Component {
         this.renderRow = this.renderRow.bind(this);
     }
 
-    // TODO: Is there a render before componentDidMount?
     componentWillMount() {
         this._loadAnswers();
     }
@@ -94,7 +93,6 @@ class AnswerPage extends Component {
     }
 
     render() {
-        console.log('In AnswerPage render');
         return (
             <View>
                 <Text style={styles.description}>{this.props.question.text}</Text>

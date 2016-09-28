@@ -77,22 +77,18 @@ class QuestionPage extends Component {
         this.setState({ question: event.nativeEvent.text });
     }
 
-    // TODO: This needs to be moved into some model service
-    //     : Should it be over https?
     _executeSave(question) {
         Question.create(question)
             .then(response => response.json())
             .then(storedQuestion => this._handleResponse(storedQuestion))
             .catch(error =>
                 this.setState({
-                    // isLoading: false,
                     message: 'Something bad happened ' + error,
                 })
             );
     }
 
     _handleResponse(question) {
-        console.log('Response>> ' + question);
         if (question) {
             this.props.navigator.push({
                 title: 'Your Answers',

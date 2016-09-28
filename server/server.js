@@ -1,10 +1,13 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
 const port = process.env.PORT || 3000;
 
+app.use(bodyParser.json())
+   .use(bodyParser.urlencoded({ extended: false }));
 
 // API Routing - break out into separate files with app.use('/api/questions', questions);
 app.route('/api/questions')
@@ -12,7 +15,14 @@ app.route('/api/questions')
         res.send('GET request from QuestionListPage');
     })
     .post((req, res) => {
-        res.send('POST request from QuestionPage');
+        // TODO: Use moment.js for dates/times
+        //     : Save this somewhere via a service
+        console.log('Request body>> ' + req.body.question);
+        const question = { id: 1,
+                           user: 'Bubbles',
+                           timestamp: Date.now(),
+                           text: req.body.question };
+        res.send(question);
     });
 
 // TODO: How to include this in the above route(..) mechanism?
@@ -21,16 +31,16 @@ app.get('/api/questions/:questionId', (req, res) => {
 });
 
 app.get('/api/questions/:questionId/answers', (req, res) => {
-    const answers = [{ id: 1, qId: 1, user: 'paddy', answer: 'At the corner of Marble Arch' },
-                     { id: 2, qId: 1, user: 'piotr', answer: 'Up the road at Petticoat Lane' },
-                     { id: 3, qId: 1, user: 'lloyd', answer: 'On Blueberry Parade' },
-                     { id: 4, qId: 1, user: 'dan', answer: 'Down the Lane .. White Hart Lane' },
-                     { id: 5, qId: 1, user: 'chris', answer: 'Just beside Old Trafford' }];
+    const answers = [{ id: 1, qId: 1, answer: 'At the corner of Marble Arch', timestamp: Date.now(), user: 'paddy' },
+                     { id: 2, qId: 1, answer: 'Up the road at Petticoat Lane', timestamp: Date.now(), user: 'piotr' },
+                     { id: 3, qId: 1, answer: 'On Blueberry Parade', timestamp: Date.now(), user: 'lloyd' },
+                     { id: 4, qId: 1, answer: 'Down the Lane .. White Hart Lane', timestamp: Date.now(), user: 'dan' },
+                     { id: 5, qId: 1, answer: 'Just beside Old Trafford', timestamp: Date.now(), user: 'chris' }];
     res.send(answers);
 });
 
 app.post('/api/questions/:questionId/answers', (req, res) => {
-    res.send('POST request for answers with questionId ' + req.params.questionId);
+    res.send('POST request to /answers with questionId ' + req.params.questionId);
 });
 
 

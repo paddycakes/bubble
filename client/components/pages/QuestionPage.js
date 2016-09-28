@@ -76,22 +76,38 @@ class QuestionPage extends Component {
         this.setState({ question: event.nativeEvent.text });
     }
 
+    // TODO: This needs to be moved into some model service
+    //     : Should it be over https?
     _executeSave(question) {
         console.log(question);
         // TODO: Post some data asynchronously...
-        this._handleResponse({ data: { id: 1,
-                                       user: 'Bubbles',
-                                       timestamp: null,
-                                       text: question },
-                             });
+        fetch('http://localhost:3000/api/questions', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                question,
+            }),
+        })
+        .then(response => response.json())
+        .then(json => this._handleResponse(json))
+        .catch(error =>
+            this.setState({
+                // isLoading: false,
+                message: 'Something bad happened ' + error,
+            })
+        );
     }
 
     _handleResponse(response) {
-        if (response.data) {
+        console.log('Response>> ' + response);
+        if (response) {
             this.props.navigator.push({
                 title: 'Your Answers',
                 component: AnswerPage,
-                passProps: { question: response.data },
+                passProps: { question: response },
             });
         } else {
             // TODO: Log error / show message

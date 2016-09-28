@@ -8,7 +8,7 @@ import {
     Image,
 } from 'react-native';
 import AnswerPage from './AnswerPage';
-import Questions from '../../model/Questions';
+import Question from '../../model/Question';
 
 const styles = StyleSheet.create({
     description: {
@@ -80,7 +80,7 @@ class QuestionPage extends Component {
     // TODO: This needs to be moved into some model service
     //     : Should it be over https?
     _executeSave(question) {
-        Questions.create(question)
+        Question.create(question)
             .then(response => response.json())
             .then(storedQuestion => this._handleResponse(storedQuestion))
             .catch(error =>

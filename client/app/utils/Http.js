@@ -7,7 +7,7 @@ const defaultHeaders = {
 
 module.exports = {
     get: (path, options) => {
-        // return this.request('GET', path, options);
+        return fetch(apiUrl + path);
     },
     post: (path, data, options) => {
         return fetch(apiUrl + path, {
@@ -19,9 +19,9 @@ module.exports = {
         });
     },
     put: (path, data, options) => {
-        // return this.request('PUT', path, options, data);
+        // TODO: Implement
     },
     del: (path, data, options) => {
-        // return this.request('DELETE', path, options, data);
+        // TODO: Implement
     },
 };

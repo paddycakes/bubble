@@ -7,6 +7,7 @@ import {
     TouchableHighlight,
     Image,
 } from 'react-native';
+import Question from '../../model/Question';
 
 const styles = StyleSheet.create({
     description: {
@@ -61,18 +62,18 @@ class AnswerPage extends Component {
     }
 
     _loadAnswers() {
-        fetch('http://localhost:3000/api/questions/1/answers')
-        .then(response => response.json())
-        .then(answers =>
-            this.setState({
-                answers,
-                dataSource: this.state.ds.cloneWithRows(answers),
-            }))
-        .catch(error =>
-            this.setState({
-                message: 'Something bad happened ' + error,
-            })
-        );
+        Question.getAnswers(this.props.question.id)
+            .then(response => response.json())
+            .then(answers =>
+                this.setState({
+                    answers,
+                    dataSource: this.state.ds.cloneWithRows(answers),
+                }))
+            .catch(error =>
+                this.setState({
+                    message: 'Something bad happened ' + error,
+                })
+            );
     }
 
     renderRow(rowData, sectionID, rowID) {

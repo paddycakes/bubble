@@ -5,7 +5,7 @@ const defaultHeaders = {
     'Content-Type': 'application/json;charset=utf-8',
 };
 
-module.exports = {
+export default {
     get: (path, options) => {
         return fetch(apiUrl + path);
     },

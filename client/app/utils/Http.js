@@ -13,9 +13,7 @@ export default {
         return fetch(apiUrl + path, {
             method: 'POST',
             headers: defaultHeaders,
-            body: JSON.stringify({
-                data,
-            }),
+            body: JSON.stringify(data),
         });
     },
     put: (path, data, options) => {

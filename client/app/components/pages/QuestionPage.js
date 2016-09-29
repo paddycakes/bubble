@@ -5,10 +5,10 @@ import {
     TextInput,
     View,
     TouchableHighlight,
-    Image,
 } from 'react-native';
 import AnswerPage from './AnswerPage';
 import Question from '../../model/Question';
+import BubbleLogo from '../BubbleLogo';
 
 const styles = StyleSheet.create({
     description: {
@@ -105,6 +105,7 @@ class QuestionPage extends Component {
     }
 
     render() {
+        console.log('QP - styles.image>> ' + styles.image);
         return (
             <View style={styles.container}>
                 <Text style={styles.description}>
@@ -129,9 +130,7 @@ class QuestionPage extends Component {
                     underlayColor='#99d9f4'>
                     <Text style={styles.buttonText}>Location</Text>
                 </TouchableHighlight>
-                <Image
-                    source={require('../../../Resources/bubble.png')}
-                    style={styles.image}/>
+                <BubbleLogo logoStyle={styles.image}/>
             </View>
         );
     }

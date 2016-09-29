@@ -2,7 +2,6 @@ import Http from '../utils/Http';
 
 export default {
     create: (question) => {
-        console.log('question>>' + question);
         return Http.post('/questions', { question });
     },
     get: (questionId) => {

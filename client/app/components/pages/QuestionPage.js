@@ -9,6 +9,7 @@ import {
 import AnswerPage from './AnswerPage';
 import Question from '../../model/Question';
 import BubbleLogo from '../BubbleLogo';
+import Styles from '../../utils/Styles';
 
 const styles = StyleSheet.create({
     description: {
@@ -105,7 +106,7 @@ class QuestionPage extends Component {
     }
 
     render() {
-        console.log('QP - styles.image>> ' + styles.image);
+        const logoStyle = Styles.convertIdToObject(styles.image);
         return (
             <View style={styles.container}>
                 <Text style={styles.description}>
@@ -130,7 +131,7 @@ class QuestionPage extends Component {
                     underlayColor='#99d9f4'>
                     <Text style={styles.buttonText}>Location</Text>
                 </TouchableHighlight>
-                <BubbleLogo logoStyle={styles.image}/>
+                <BubbleLogo logoStyle={logoStyle}/>
             </View>
         );
     }

@@ -10,6 +10,8 @@ const styles = StyleSheet.create({
     },
 });
 
+// TODO: Should this have a componentShouldUpdate() method
+//       to return false as this will never need updating?
 const TagLine = () => {
     return (
         <View>

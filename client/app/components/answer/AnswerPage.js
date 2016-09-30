@@ -3,11 +3,9 @@ import {
     StyleSheet,
     Text,
     View,
-    ListView,
-    TouchableHighlight,
-    Image,
 } from 'react-native';
 import Question from '../../data/Question';
+import AnswerList from './AnswerList';
 
 const styles = StyleSheet.create({
     description: {
@@ -16,26 +14,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#656565',
     },
-    textContainer: {
-        flex: 1,
-    },
-    separator: {
-        height: 1,
-        backgroundColor: '#dddddd',
-    },
-    answer: {
-        fontSize: 15,
-        color: '#656565',
-    },
-    user: {
-        fontSize: 15,
-        fontWeight: 'bold',
-        color: '#48BBEC',
-    },
-    rowContainer: {
-        flexDirection: 'row',
-        padding: 10,
-    },
 });
 
 // TODO: This component should fetch required answers when displayed - if any.
@@ -43,17 +21,11 @@ const styles = StyleSheet.create({
 //       The rendering should be done via props passed into a Presentation component.
 //       https://www.reddit.com/r/reactnative/comments/33wmu4/how_to_re_render_listview_items/
 //       See other article I read about the difference between smart and dumb components.
+// TODO: The Websocket should be in this component and pass new answers down into the presentation AnswerList
 class AnswerPage extends Component {
     constructor(props) {
         super(props);
-        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1.id !== r2.id });
-        const answers = [];
-        this.state = {
-            answers,
-            ds,
-            dataSource: ds.cloneWithRows(answers),
-        };
-        this.renderRow = this.renderRow.bind(this);
+        this.state = { answers: [] };
     }
 
     componentWillMount() {
@@ -64,41 +36,18 @@ class AnswerPage extends Component {
         Question.getAnswers(this.props.question.id)
             .then(response => response.json())
             .then(answers =>
-                this.setState({
-                    answers,
-                    dataSource: this.state.ds.cloneWithRows(answers),
-                }))
+                this.setState({ answers })
+            )
             .catch(error =>
-                this.setState({
-                    message: 'Something bad happened ' + error,
-                })
+                this.setState({ message: 'Something bad happened ' + error })
             );
-    }
-
-    renderRow(rowData, sectionID, rowID) {
-        return (
-            <TouchableHighlight onPress={() => this.rowPressed(rowData.id)}
-                underlayColor='#dddddd'>
-                <View>
-                    <View style={styles.rowContainer}>
-                        <View style={styles.textContainer}>
-                            <Text style={styles.answer}>{rowData.answer}</Text>
-                            <Text style={styles.user}>{rowData.user}</Text>
-                        </View>
-                    </View>
-                    <View style={styles.separator}/>
-                </View>
-            </TouchableHighlight>
-          );
     }
 
     render() {
         return (
             <View>
                 <Text style={styles.description}>{this.props.question.text}</Text>
-                <ListView
-                    dataSource={this.state.dataSource}
-                    renderRow={this.renderRow}/>
+                <AnswerList answers={this.state.answers} />
             </View>
         );
     }

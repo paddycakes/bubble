@@ -1,20 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import {
-    StyleSheet,
-    Text,
-    View,
-} from 'react-native';
-import Question from '../../data/Question';
+import { View } from 'react-native';
 import AnswerList from './AnswerList';
-
-const styles = StyleSheet.create({
-    description: {
-        marginTop: 80,
-        fontSize: 18,
-        textAlign: 'center',
-        color: '#656565',
-    },
-});
+import QuestionHeader from './QuestionHeader';
+import Question from '../../data/Question';
 
 // TODO: This component should fetch required answers when displayed - if any.
 //       and have a listening websocket for more answers to display as they are pushed.
@@ -46,8 +34,8 @@ class AnswerPage extends Component {
     render() {
         return (
             <View>
-                <Text style={styles.description}>{this.props.question.text}</Text>
-                <AnswerList answers={this.state.answers} />
+                <QuestionHeader {...this.props}/>
+                <AnswerList answers={this.state.answers}/>
             </View>
         );
     }

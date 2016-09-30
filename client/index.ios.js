@@ -4,7 +4,7 @@ import {
     StyleSheet,
     NavigatorIOS,
 } from 'react-native';
-import QuestionPage from './app/components/pages/QuestionPage';
+import QuestionPage from './app/components/question/QuestionPage';
 
 const styles = StyleSheet.create({
     container: {

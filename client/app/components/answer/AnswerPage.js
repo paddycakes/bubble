@@ -7,7 +7,7 @@ import {
     TouchableHighlight,
     Image,
 } from 'react-native';
-import Question from '../../model/Question';
+import Question from '../../data/Question';
 
 const styles = StyleSheet.create({
     description: {

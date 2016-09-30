@@ -6,9 +6,9 @@ import {
     View,
     TouchableHighlight,
 } from 'react-native';
-import AnswerPage from './AnswerPage';
-import Question from '../../model/Question';
-import BubbleLogo from '../BubbleLogo';
+import AnswerPage from '../answer/AnswerPage';
+import Question from '../../data/Question';
+import BubbleLogo from '../common/BubbleLogo';
 import Styles from '../../utils/Styles';
 
 const styles = StyleSheet.create({
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         color: '#48BBEC',
     },
-    image: {
+    logoImage: {
         width: 215,
         height: 211,
         marginTop: 40,
@@ -106,7 +106,7 @@ class QuestionPage extends Component {
     }
 
     render() {
-        const logoStyle = Styles.convertIdToObject(styles.image);
+        const logoStyle = Styles.convertIdToObject(styles.logoImage);
         return (
             <View style={styles.container}>
                 <Text style={styles.description}>

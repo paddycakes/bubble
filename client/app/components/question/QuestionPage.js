@@ -7,8 +7,9 @@ import {
     TouchableHighlight,
 } from 'react-native';
 import AnswerPage from '../answer/AnswerPage';
-import Question from '../../data/Question';
 import BubbleLogo from '../common/BubbleLogo';
+import LocationButton from '../location/LocationButton';
+import Question from '../../data/Question';
 import Styles from '../../utils/Styles';
 
 const styles = StyleSheet.create({
@@ -127,10 +128,7 @@ class QuestionPage extends Component {
                             onPress={this.onGoPressed}>Go</Text>
                     </TouchableHighlight>
                 </View>
-                <TouchableHighlight style={styles.button}
-                    underlayColor='#99d9f4'>
-                    <Text style={styles.buttonText}>Location</Text>
-                </TouchableHighlight>
+                <LocationButton/>
                 <BubbleLogo logoStyle={logoStyle}/>
             </View>
         );
